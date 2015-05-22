@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 
-class Lorentz(object):
+class Lorenz(object):
 
     def __init__(self, init_state,
                  sigma = 10.0, rho=28.0, beta=2.67):
@@ -45,11 +45,11 @@ class Lorentz(object):
 if __name__ == '__main__':
 
     init_state = np.array([2.0, 3.0, 4.0])
-    lorentz = Lorentz(init_state)
-    lorentz.solve()
+    lorenz = Lorenz(init_state)
+    lorenz.solve()
     
     # plotting the Lorentz attractor
-    s = lorentz.state
+    s = lorenz.state
     x,y,z = s[:,0], s[:,1], s[:,2]
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
@@ -59,6 +59,8 @@ if __name__ == '__main__':
     ax.set_xlabel('x')
     ax.set_ylabel('y')
     ax.set_zlabel('z')
-    plt.savefig('/tmp/lorenz.png')
+    plt.savefig('results/lorenz.png')
     # plt.show()
     
+    # save to csv
+    np.savetxt('results/lorenz.csv', s, header='x,y,z', delimiter=',')
